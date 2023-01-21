@@ -3,6 +3,9 @@ import { common } from 'replugged';
 import { Component, EventEmitter } from './common';
 import { SpotifyUser } from './types';
 
+const mainHoverColor = "#00C853";
+const progressColor = "#00C853";
+
 interface FadeAnimations {
   _: {
     display: string;
@@ -31,12 +34,12 @@ class PlayPauseIcon extends Component {
   });
 
   public defaultColor = 'var(--text-normal)';
-  public hoverColor = 'var(--brand-experiment-500)';
+  public hoverColor = mainHoverColor;
   #state = false;
 
   public constructor(
     defaultColor = 'var(--text-normal)',
-    hoverColor = 'var(--brand-experiment-500)',
+    hoverColor = mainHoverColor,
   ) {
     super('svg', {
       classes: 'play-pause-icon',
@@ -104,16 +107,16 @@ class RepeatIcon extends Component {
   });
 
   public defaultColor = 'var(--text-normal)';
-  public hoverColor = 'var(--brand-experiment-300)';
-  public onColor = 'var(--brand-experiment-500)';
+  public hoverColor = mainHoverColor;
+  public onColor = mainHoverColor;
   #state = false;
   #mode: 'one' | 'all' = 'all';
   #realMode: 'off' | 'context' | 'track' = 'off';
 
   public constructor(
     defaultColor = 'var(--text-normal)',
-    hoverColor = 'var(--brand-experiment-300)',
-    onColor = 'var(--brand-experiment-500)',
+    hoverColor = mainHoverColor,
+    onColor = mainHoverColor,
   ) {
     super('svg', {
       classes: 'repeat-icon',
@@ -218,14 +221,14 @@ class ShuffleIcon extends Component {
   });
 
   public defaultColor = 'var(--text-normal)';
-  public hoverColor = 'var(--brand-experiment-300)';
-  public onColor = 'var(--brand-experiment-500)';
+  public hoverColor = mainHoverColor;
+  public onColor = mainHoverColor;
   #state = false;
 
   public constructor(
     defaultColor = 'var(--text-normal)',
-    hoverColor = 'var(--brand-experiment-300)',
-    onColor = 'var(--brand-experiment-500)',
+    hoverColor = mainHoverColor,
+    onColor = mainHoverColor,
   ) {
     super('svg', {
       classes: 'shuffle-icon',
@@ -287,11 +290,11 @@ class SkipPrevIcon extends Component {
   });
 
   public defaultColor = 'var(--text-normal)';
-  public hoverColor = 'var(--brand-experiment-500)';
+  public hoverColor = mainHoverColor;
 
   public constructor(
     defaultColor = 'var(--text-normal)',
-    hoverColor = 'var(--brand-experiment-500)',
+    hoverColor = mainHoverColor,
   ) {
     super('svg', {
       classes: 'skip-previous-icon',
@@ -316,11 +319,11 @@ class SkipNextIcon extends Component {
   });
 
   public defaultColor = 'var(--text-normal)';
-  public hoverColor = 'var(--brand-experiment-500)';
+  public hoverColor = mainHoverColor;
 
   public constructor(
     defaultColor = 'var(--text-normal)',
-    hoverColor = 'var(--brand-experiment-500)',
+    hoverColor = mainHoverColor,
   ) {
     super('svg', {
       classes: 'skip-next-icon',
@@ -427,7 +430,7 @@ class Title extends Component {
       ],
       {
         iterations: Infinity,
-        duration: (this.element.scrollWidth - (this.element as HTMLElement).offsetWidth) * 50,
+        duration: (this.element.scrollWidth - (this.element as HTMLElement).offsetWidth) * 115,
         direction: 'alternate-reverse',
         easing: 'linear',
       },
@@ -543,7 +546,7 @@ class Artists extends Component {
       ],
       {
         iterations: Infinity,
-        duration: (this.element.scrollWidth - (this.element as HTMLElement).offsetWidth) * 50,
+        duration: (this.element.scrollWidth - (this.element as HTMLElement).offsetWidth) * 115,
         direction: 'alternate-reverse',
         easing: 'linear',
       },
@@ -802,9 +805,9 @@ class PlaybackTimeDisplay extends Component {
 }
 
 class ProgressBarInner extends Component {
-  public color = 'var(--text-normal)';
+  public color = mainHoverColor;
 
-  public constructor(color = 'var(--text-normal)') {
+  public constructor(color = mainHoverColor) {
     super('div', {
       classes: 'progressbar-inner',
       style: {
@@ -982,11 +985,11 @@ class Dock extends Component {
       style: {
         display: 'flex',
         flexDirection: 'column',
-        paddingBottom: '6px',
+        paddingBottom: '3px',
       },
     });
 
-    this.addChildren(this.playbackTimeDisplay, this.progressBar, this.dockIcons);
+    this.addChildren(this.progressBar, this.dockIcons);
   }
 
   public reset(): void {
@@ -1028,8 +1031,8 @@ class ModalHeader extends Component {
       style: {
         display: 'flex',
         height: '60px',
-        marginTop: '6px',
-        paddingBottom: '10px',
+        marginTop: '2px',
+        paddingBottom: '4px',
         paddingLeft: '8px',
       },
     });

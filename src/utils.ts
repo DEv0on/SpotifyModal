@@ -475,7 +475,7 @@ export class SpotifyModalManager {
       this.panels = document.body.querySelectorAll('[class^="panels-"]')?.[0] as HTMLElement;
     if (!this.panels) this._logger.error('[@injectModal]', 'Cannot get panel');
     else if (!this._injected) {
-      this.modal.insertIntoParent('afterbegin', this.panels);
+      this.panels.insertBefore(this.modal.element, this.panels.children[this.panels.children.length-1])
       this._injected = true;
       this._logger.log('[@injectModal]', 'Succeeded');
     }
@@ -483,7 +483,7 @@ export class SpotifyModalManager {
 
   public uninjectModal(): void {
     if (!this.panels)
-      this.panels = document.body.querySelectorAll('[class^="panels-"]')?.[0] as HTMLElement;
+    this.panels = document.body.querySelectorAll('[class^="panels-"]')?.[0] as HTMLElement;
     if (!this.panels) this._logger.error('[@uninjectModal]', 'Cannot get panel');
     else if (this._injected) {
       this.modal.removeParents(this.panels);
